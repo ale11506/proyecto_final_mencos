@@ -63,7 +63,7 @@ include_once '../../vistas/templates/header.php'; ?>
         </div>
         <div class="row">
             <div class="col">
-                <a href="../../controladores/pacientes/guardar.php" class="btn btn-primary w-100">BUSCAR</a>
+                <a href="../../controladores/pacientes/buscar.php" class="btn btn-primary w-100">BUSCAR</a>
             </div>
         </div>
     </form>
