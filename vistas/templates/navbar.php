@@ -23,7 +23,7 @@
           <i class="bi bi-heart-pulse"></i>MEDICOS
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="../../vistas/pacientes/index.php"><i class="bi bi-plus-circle me-2"></i>CREAR</a></li>
+            <li><a class="dropdown-item" href="../../vistas/medicos//index.php"><i class="bi bi-plus-circle me-2"></i>CREAR</a></li>
             <li><a class="dropdown-item" href="../../vistas/pacientes/buscar.php"><i class="bi bi-search me-2"></i>BUSCAR</a></li>
           </ul>
         </li>
