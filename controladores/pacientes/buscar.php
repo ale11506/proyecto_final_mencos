@@ -78,7 +78,7 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="../../vistas/pacientes/modificar.php?paciente_id=<?= base64_encode($paciente['paciente_id'])?>"><i class="bi bi-pencil-square me-2"></i>Modificar</a></li>
-                                        <li><a class="dropdown-item" href="../../controladores/pacientes/eliminar.php?cli_id=<?= base64_encode($paciente['cli_id'])?>"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
+                                        <li><a class="dropdown-item" href="../../controladores/pacientes/eliminar.php?paciente_id=<?= base64_encode($paciente['paciente_id'])?>"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
                                     </ul>
                                 </div>
 
