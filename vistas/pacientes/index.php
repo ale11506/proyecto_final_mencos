@@ -7,25 +7,25 @@ include_once '../../vistas/templates/header.php'; ?>
     <form action="../../controladores/pacientes/guardar.php" method="POST" class="border bg-light shadow rounded p-4 col-lg-6">
         <div class="row mb-3">
             <div class="col">
-                <label for="pac_nombre1">Primer Nombre</label>
+                <label for="pac_nombre1">PRIMER NOMBRE</label>
                 <input type="text" name="pac_nombre1" id="pac_nombre1" class="form-control" required>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="pac_nombre2">Segundo Nombre</label>
+                <label for="pac_nombre2">SEGUNDO NOMBRE</label>
                 <input type="text" name="pac_nombre2" id="pac_nombre2" class="form-control" required>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="pac_apellido1">Primer Apellido</label>
+                <label for="pac_apellido1">PRIMER APELLIDO</label>
                 <input type="text" name="pac_apellido1" id="pac_apellido1" class="form-control" required>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="pac_apellido2">Segundo Apellido</label>
+                <label for="pac_apellido2">SEGUNDO APELLIDO</label>
                 <input type="text" name="pac_apellido2" id="pac_apellido2" class="form-control" required>
             </div>
         </div>
@@ -37,7 +37,7 @@ include_once '../../vistas/templates/header.php'; ?>
         </div>
         <div class="row mb-3">
             <div class="col-3">
-                <label for="pac_sexo">Genero</label>
+                <label for="pac_sexo">GENERO</label>
                 <select name="pac_sexo" id="pac_sexo">
                     <option>Seleccione su Genero</option>
                     <option value="Masculino">Masculino</option>
@@ -47,9 +47,9 @@ include_once '../../vistas/templates/header.php'; ?>
         </div>
         <div class="row mb-3">
             <div class="col-3">
-                <label for="pac_referido">¿Trae Referencia?</label>
+                <label for="pac_referido">¿TRAE REFERENCIA?</label>
                 <select name="pac_referido" id="pac_referido">
-                    <option>Seleccione una opcion</option>
+                    <option>Seleccione una Opcion</option>
                     <option value="Si">SI</option>
                     <option value="No">NO</option>
                 </select>
