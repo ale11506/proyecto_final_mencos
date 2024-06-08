@@ -37,8 +37,8 @@ include_once '../../vistas/templates/header.php'; ?>
         </div>
         <div class="row mb-3">
             <div class="col-3">
-                <label for="pac_sex">Genero</label>
-                <select name="pac_sex" id="pac_sex">
+                <label for="pac_sexo">Genero</label>
+                <select name="pac_sexo" id="pac_sexo">
                     <option>Seleccione su Genero</option>
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>

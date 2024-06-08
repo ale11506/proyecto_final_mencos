@@ -1,4 +1,9 @@
 <?php
+
+//  ini_set('display_errors', 1);
+//  ini_set('display_startup_errors', 1);
+//  error_reporting(E_ALL);
+
 require 'conexion.php';
 
 class Pacientes extends conexion{
@@ -29,9 +34,7 @@ class Pacientes extends conexion{
 
       // METODO PARA INSERTAR
       public function guardar(){
-        $sql = "INSERT into cliente (pac_nombre1, pac_nombre2, pac_apellido1
-         pac_apellido2, pac_dpi, pac_sexo, pac_referido) values ('$this->pac_nombre1', '$this->pac_nombre2'
-         '$this->pac_apellido1', '$this->pac_apellido2', '$this->pac_dpi', '$this->pac_sexo', '$this->pac_referido')";
+        $sql = "INSERT into Pacientes (pac_nombre1, pac_nombre2, pac_apellido1, pac_apellido2, pac_dpi, pac_sexo, pac_referido) values ('$this->pac_nombre1', '$this->pac_nombre2', '$this->pac_apellido1', '$this->pac_apellido2', '$this->pac_dpi', '$this->pac_sexo', '$this->pac_referido')";
         $resultado = $this->ejecutar($sql);
         return $resultado; 
     }

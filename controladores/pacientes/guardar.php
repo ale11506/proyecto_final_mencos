@@ -1,5 +1,9 @@
 <?php
 
+//  ini_set('display_errors', 1);
+//  ini_set('display_startup_errors', 1);
+//  error_reporting(E_ALL);
+
 require '../../modelos/pacientes.php';
 
 // VALIDAR INFORMACION
@@ -21,8 +25,8 @@ if ($_POST['pac_nombre1'] == '' || $_POST['pac_nombre2'] == '' || $_POST['pac_ap
 } else {
     try {
         // REALIZAR CONSULTA
-        $clientes = new Pacientes($_POST);
-        $guardar = $clientes->guardar();
+        $paciente = new Pacientes($_POST);
+        $guardar = $paciente->guardar();
         $resultado = [
             'mensaje' => 'PACIENTE INSERTADO CORRECTAMENTE',
             'codigo' => 1
