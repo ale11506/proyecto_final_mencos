@@ -10,7 +10,7 @@ abstract class Conexion{
     protected static function connectar() : PDO{
         try {
             
-            self::$conexion = new PDO("informix:host=host.docker.internal; service=9088;database=HospitalLaEsperanza; server=informix; protocol=onsoctcp;EnableScrollableCursors=1", "informix", "in4mix");
+            self::$conexion = new PDO("informix:host=host.docker.internal; service=9088;database=hospitallaesperanza; server=informix; protocol=onsoctcp;EnableScrollableCursors=1", "informix", "in4mix");
             self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             // echo "conexion exitosa";
         } catch (PDOException $e) {

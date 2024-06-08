@@ -35,22 +35,27 @@ include_once '../../vistas/templates/header.php'; ?>
                 <input type="text" name="pac_dpi" id="pac_dpi" class="form-control" required>
             </div>
         </div>
-        <div class="col">
-            <label for="pac_sex">Genero</label>
-            <select name="pac_sex" id="pac_sex">
-                <option>Seleccione su Genero</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
-            </select>
+        <div class="row mb-3">
+            <div class="col-3">
+                <label for="pac_sex">Genero</label>
+                <select name="pac_sex" id="pac_sex">
+                    <option>Seleccione su Genero</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+            </div>
         </div>
-        <div class="col">
-            <label for="pac_referido">¿Trae Referencia?</label>
-            <select name="pac_sex" id="pac_sex">
-                <option>Seleccione una opcion</option>
-                <option value="Si">SI</option>
-                <option value="No">NO</option>
-            </select>
+        <div class="row mb-3">
+            <div class="col-3">
+                <label for="pac_referido">¿Trae Referencia?</label>
+                <select name="pac_referido" id="pac_referido">
+                    <option>Seleccione una opcion</option>
+                    <option value="Si">SI</option>
+                    <option value="No">NO</option>
+                </select>
+            </div>
         </div>
+        <br>
         <div class="row mb-3">
             <div class="col">
                 <button type="submit" class="btn btn-success w-100">GUARDAR</button>
