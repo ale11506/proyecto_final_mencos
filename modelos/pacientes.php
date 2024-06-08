@@ -79,25 +79,27 @@ class Pacientes extends conexion
 
   public function buscarId($id)
   {
-    $sql = " SELECT * FROM paciente WHERE paciente_situacion = 1 AND paciente_id = '$id' ";
+    $sql = " SELECT * FROM pacientes WHERE paciente_situacion = 1 AND paciente_id = '$id' ";
     $resultado = array_shift(self::servir($sql));
 
     return $resultado;
   }
 
-  // public function modificar()
-  // {
-  //   $sql = "UPDATE paciente SET cli_nombre = '$this->cli_nombre', cli_apellido = '$this->cli_apellido', cli_nit = '$this->cli_nit', cli_telefono = '$this->cli_telefono' WHERE cli_id = $this->cli_id ";
-  //   $resultado = $this->ejecutar($sql);
-  //   return $resultado;
-  // }
+  public function modificar()
+  {
+    $sql = "UPDATE pacientes SET pac_nombre1 = '$this->pac_nombre1', pac_nombre2 = '$this->pac_nombre2', pac_apellido1 = '$this->pac_apellido1', pac_apellido2 = '$this->pac_apellido2', pac_dpi = '$this->pac_dpi', pac_sexo = '$this->pac_sexo', pac_referido = '$this->pac_referido' WHERE paciente_id = $this->paciente_id ";
+    $resultado = $this->ejecutar($sql);
+    return $resultado;
+  }
 
-  // public function eliminar(){
-  //     // $sql = "DELETE FROM clientes WHERE cli_id = $this->cli_id ";
+  public function eliminar()
+  {
+    //  $sql = "DELETE FROM pacientes WHERE paciente_id = $this->paciente_id ";
 
-  //     // echo $sql;
-  //     $sql = "UPDATE cliente SET cli_situacion = 0 WHERE cli_id = $this->cli_id ";
-  //     $resultado = $this->ejecutar($sql);
-  //     return $resultado; 
-  // }
+    // echo $sql;
+
+    $sql = "UPDATE pacientes SET paciente_situacion = 0 WHERE paciente_id = $this->paciente_id ";
+    $resultado = $this->ejecutar($sql);
+    return $resultado;
+  }
 }
