@@ -88,14 +88,14 @@ class medicos extends conexion
     return $resultado;
   }
 
-//  public function eliminar()
-//  {
-//    //  $sql = "DELETE FROM pacientes WHERE paciente_id = $this->paciente_id ";
+  public function eliminar()
+  {
+    //   $sql = "DELETE FROM medicos WHERE medico_id = $this->medico_id ";
 
-//    // echo $sql;
+    //  echo $sql;
 
-//    $sql = "UPDATE pacientes SET paciente_situacion = 0 WHERE paciente_id = $this->paciente_id ";
-//    $resultado = $this->ejecutar($sql);
-//    return $resultado;
-//  }
+    $sql = "UPDATE medicos SET medico_situacion = 0 WHERE medico_id = $this->medico_id ";
+    $resultado = $this->ejecutar($sql);
+    return $resultado;
+  }
 }

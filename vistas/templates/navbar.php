@@ -32,7 +32,7 @@
           <i class="bi bi-hospital"></i>CLINICAS
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="../../vistas/pacientes/index.php"><i class="bi bi-plus-circle me-2"></i>CREAR</a></li>
+            <li><a class="dropdown-item" href="../../vistas/clinicas/index.php"><i class="bi bi-plus-circle me-2"></i>CREAR</a></li>
             <li><a class="dropdown-item" href="../../vistas/pacientes/buscar.php"><i class="bi bi-search me-2"></i>BUSCAR</a></li>
           </ul>
         </li>

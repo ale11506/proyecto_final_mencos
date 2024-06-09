@@ -1,15 +1,15 @@
 <?php
 
-    require '../../modelos/pacientes.php';
+    require '../../modelos/medico.php';
     
-    $_GET['paciente_id'] = filter_var( base64_decode($_GET['paciente_id']), FILTER_SANITIZE_NUMBER_INT);
-    $paciente = new Pacientes($_GET);
+    $_GET['medico_id'] = filter_var( base64_decode($_GET['medico_id']), FILTER_SANITIZE_NUMBER_INT);
+    $medico = new Medicos($_GET);
     
     try{
         
-        $eliminar = $paciente->eliminar();
+        $eliminar = $medico->eliminar();
         $resultado = [
-            'mensaje' => 'PACIENTE ELIMINADO CORRECTAMENTE',
+            'mensaje' => 'MEDICO ELIMINADO CORRECTAMENTE',
             'codigo' => 1
         ];
         
@@ -43,7 +43,7 @@ include_once '../../vistas/templates/header.php'; ?>
 </div>
 <div class="row justify-content-center">
     <div class="col-lg-6">
-        <a href="../../controladores/pacientes/buscar.php" class="btn btn-primary w-100">REGRESAR A LOS RESULTADOS</a>
+        <a href="../../controladores/medicos/buscar.php" class="btn btn-primary w-100">REGRESAR A LOS RESULTADOS</a>
     </div>
 </div>
 
