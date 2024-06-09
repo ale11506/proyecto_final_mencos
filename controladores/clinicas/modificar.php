@@ -3,19 +3,17 @@
     //  ini_set('display_startup_errors', '1');
     //  error_reporting(E_ALL);
 
-require '../../modelos/medico.php';
+require '../../modelos/clinica.php';
 
 // VALIDAR INFORMACION
-$_POST['medico_id'] = filter_var($_POST['medico_id'], FILTER_VALIDATE_INT);
-$_POST['med_nombre1'] = htmlspecialchars($_POST['med_nombre1']);
-$_POST['med_nombre2'] = htmlspecialchars($_POST['med_nombre2']);
-$_POST['med_apellido1'] = htmlspecialchars($_POST['med_apellido1']);
-$_POST['med_apellido2'] = htmlspecialchars($_POST['med_apellido2']);
-$_POST['med_especialidad'] = htmlspecialchars($_POST['med_especialidad']);
+$_POST['clinica_id'] = filter_var($_POST['clinica_id'], FILTER_VALIDATE_INT);
+$_POST['cli_nombre_clinica'] = htmlspecialchars($_POST['cli_nombre_clinica']);
+$_POST['cli_ubicacion'] = htmlspecialchars($_POST['cli_ubicacion']);
+$_POST['cli_telefono'] = htmlspecialchars($_POST['cli_telefono']);
 
 
 
-if ($_POST['med_nombre1'] == '' || $_POST['med_nombre2'] == '' || $_POST['med_apellido1'] == '' ||  $_POST['med_apellido2'] == '' ||  $_POST['med_especialidad'] == '') {
+if ($_POST['cli_nombre_clinica'] == '' || $_POST['cli_ubicacion'] == '' || $_POST['cli_telefono'] == '') {
     // ALERTA PARA VALIDAR DATOS
     $resultado = [
         'mensaje' => 'DEBE VALIDAR LOS DATOS',
@@ -24,13 +22,13 @@ if ($_POST['med_nombre1'] == '' || $_POST['med_nombre2'] == '' || $_POST['med_ap
 } else {
     try {
         // REALIZAR CONSULTA
-        $medico = new Medicos($_POST);
+        $clinica = new Clinicas($_POST);
 
         
-        $modificar = $medico->modificar();
+        $modificar = $clinica->modificar();
 
         $resultado = [
-            'mensaje' => 'MEDICO MODIFICADO CORRECTAMENTE',
+            'mensaje' => 'CLINICA MODIFICADO CORRECTAMENTE',
             'codigo' => 1
         ];
     } catch (PDOException $pe) {
@@ -61,7 +59,7 @@ include_once '../../vistas/templates/header.php'; ?>
 </div>
 <div class="row justify-content-center">
     <div class="col-lg-6">
-        <a href="../../controladores/medicos/buscar.php" class="btn btn-primary w-100">Regresar</a>
+        <a href="../../controladores/clinicas/buscar.php" class="btn btn-primary w-100">Regresar</a>
     </div>
 </div>
 

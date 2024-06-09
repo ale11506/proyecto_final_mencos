@@ -72,7 +72,7 @@
                                         Acciones
                                     </button>
                                     <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="../../vistas/clinicas/modificar.php ?medico_id=<?= base64_encode($medico['medico_id'])?>"><i class="bi bi-pencil-square me-2"></i>Modificar</a></li>
+                                    <li><a class="dropdown-item" href="../../vistas/clinicas/modificar.php?clinica_id=<?= base64_encode($clinica['clinica_id'])?>"><i class="bi bi-pencil-square me-2"></i>Modificar</a></li>
                                         <li><a class="dropdown-item" href="../../controladores/medicos/eliminar.php?medico_id=<?= base64_encode($medico['medico_id'])?>"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
                                     </ul>
                                 </div>
