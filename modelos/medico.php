@@ -1,8 +1,8 @@
 <?php
 
-  ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
+  // ini_set('display_errors', 1);
+  // ini_set('display_startup_errors', 1);
+  // error_reporting(E_ALL);
 
 require 'conexion.php';
 
@@ -66,7 +66,7 @@ class medicos extends conexion
      $sql .= " AND med_apellido2 like'%$this->med_apellido2%' ";
    }
    if ($this->med_especialidad != '') {
-     $sql .= " AND med_dpi like'%$this->med_especialidad%' ";
+     $sql .= " AND med_especialidad like'%$this->med_especialidad%' ";
    }
 
    $resultado = self::servir($sql);

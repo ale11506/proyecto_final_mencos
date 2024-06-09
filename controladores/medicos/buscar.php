@@ -15,7 +15,7 @@
         $_GET['med_especialidad'] = htmlspecialchars( $_GET['med_especialidad']);
 
         $objmedico = new Medicos($_GET);
-        $medico = $objmedico->buscar();
+        $medicos = $objmedico->buscar();
         $resultado = [
             'mensaje' => 'Datos encontrados',
             'datos' => $medicos,
