@@ -1,98 +1,48 @@
-<?php
-    // ini_set('display_errors', '1');
-    // ini_set('display_startup_errors', '1');
-    // error_reporting(E_ALL);
+<?php 
 
-    require '../../modelos/pacientes.php';
+include_once '../../vistas/templates/header.php'; ?>
 
-    // consulta
-    try {
-        // var_dump($_GET);
-        $_GET['med_nombre1'] = htmlspecialchars( $_GET['med_nombre1']);
-        $_GET['med_nombre2'] = htmlspecialchars( $_GET['med_nombre2']);
-        $_GET['med_apellido1'] = htmlspecialchars( $_GET['med_apellido1']);
-        $_GET['med_apellido2'] = htmlspecialchars( $_GET['med_apellido2']);
-        $_GET['med_especialidad'] = htmlspecialchars( $_GET['med_especialidad']);
-
-        $objmedico = new medicos($_GET);
-        $medicos = $objmedico->buscar();
-        $resultado = [
-            'mensaje' => 'Datos encontrados',
-            'datos' => $pacientes,
-            'codigo' => 1
-        ];
-        // var_dump($clientes);
-        
-    } catch (Exception $e) {
-        $resultado = [
-            'mensaje' => 'OCURRIO UN ERROR EN LA EJECUCIÓN',
-            'detalle' => $e->getMessage(),
-            'codigo' => 0
-        ];
-    }       
-
-
-    $alertas = ['danger', 'success', 'warning'];
-
-    
-    include_once '../../vistas/templates/header.php'; ?>
-
-    <div class="row mb-4 justify-content-center">
-        <div class="col-lg-6 alert alert-<?=$alertas[$resultado['codigo']] ?>" role="alert">
-            <?= $resultado['mensaje'] ?>
+<h1 class="text-center">FORMULARIO DE MEDICOS</h1>
+<div class="row justify-content-center">
+    <form action="../../controladores/medicos/buscar.php" method="GET" class="border bg-light shadow rounded p-4 col-lg-6">
+        <div class="row mb-3">
+            <div class="col">
+                <label for="med_nombre1">PRIMER NOMBRE</label>
+                <input type="text" name="med_nombre1" id="med_nombre1" class="form-control" >
+            </div>
         </div>
-    </div>
-    <div class="row mb-4 justify-content-center">
-        <div class="col-lg-6">
-            <a href="../../vistas/pacientes/index.php" class="btn btn-primary w-100">Volver al formulario de busqueda</a>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="med_nombre2">SEGUNDO NOMBRE</label>
+                <input type="text" name="med_nombre2" id="med_nombre2" class="form-control" >
+            </div>
         </div>
-    </div>
-    <h1 class="text-center">Listado de Pacientes</h1>
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <table class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Primer Nombre</th>
-                        <th>Segundo Nombre</th>
-                        <th>Primer Apellido</th>
-                        <th>Segundo Apellido</th>
-                        <th>DPI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if($resultado['codigo'] == 1 && count($pacientes) > 0) : ?>
-                        <?php foreach ($pacientes as $key => $paciente) : ?>
-                            <tr>
-                                <td><?= $key + 1?></td>
-                                <td><?= $paciente['pac_nombre1'] ?></td>
-                                <td><?= $paciente['pac_nombre2'] ?></td>
-                                <td><?= $paciente['pac_apellido1'] ?></td>
-                                <td><?= $paciente['pac_apellido2'] ?></td>
-                                <td><?= $paciente['pac_dpi'] ?></td>
-                                <td class="text-center">
-                                <div class="dropdown">
-                                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Acciones
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="../../vistas/pacientes/modificar.php?paciente_id=<?= base64_encode($paciente['paciente_id'])?>"><i class="bi bi-pencil-square me-2"></i>Modificar</a></li>
-                                        <li><a class="dropdown-item" href="../../controladores/pacientes/eliminar.php?paciente_id=<?= base64_encode($paciente['paciente_id'])?>"><i class="bi bi-trash me-2"></i>Eliminar</a></li>
-                                    </ul>
-                                </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="med_apellido1">PRIMER APELLIDO</label>
+                <input type="text" name="med_apellido1" id="med_apellido1" class="form-control" >
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="med_apellido2">SEGUNDO APELLIDO</label>
+                <input type="text" name="med_apellido2" id="med_apellido2" class="form-control" >
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="med_especialidad">ESPECIALIDAD</label>
+                <input type="text" name="med_especialidad" id="med_especialidad" class="form-control" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-info w-100 bg-success text-white"> BUSCAR</button>
+            </div>
+        </div>
+    </form>
+</div>
 
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    <?php else : ?>
-                        <tr>
-                            <td colspan="4">No hay pacientes registrados</td>
-                        </tr>  
-                    <?php endif ?>
-                </tbody>
-                        
-            </table>
-        </div>        
-    </div>        
-<?php include_once '../../vistas/templates/footer.php'; ?>  
+<?php include_once '../../vistas/templates/footer.php'; ?>
+
+   
