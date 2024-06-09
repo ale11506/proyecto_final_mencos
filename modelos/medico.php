@@ -31,7 +31,7 @@ class medicos extends conexion
   // METODO PARA INSERTAR
   public function guardar()
   {
-    $sql = "INSERT into Medicos (med_nombre1, med_nombre2, med_apellido1, med_apellido2, med_especialidad) values ('$this->med_nombre1', '$this->med_nombre2', '$this->med_apellido1', '$this->med_apellido2', '$this->med_especialidad')";
+    $sql = "INSERT into medicos (med_nombre1, med_nombre2, med_apellido1, med_apellido2, med_especialidad) values ('$this->med_nombre1', '$this->med_nombre2', '$this->med_apellido1', '$this->med_apellido2', '$this->med_especialidad')";
     $resultado = $this->ejecutar($sql);
     return $resultado;
   }
@@ -81,12 +81,12 @@ class medicos extends conexion
    return $resultado;
  }
 
-//  public function modificar()
-//  {
-//    $sql = "UPDATE pacientes SET pac_nombre1 = '$this->pac_nombre1', pac_nombre2 = '$this->pac_nombre2', pac_apellido1 = '$this->pac_apellido1', pac_apellido2 = '$this->pac_apellido2', pac_dpi = '$this->pac_dpi', pac_sexo = '$this->pac_sexo', pac_referido = '$this->pac_referido' WHERE paciente_id = $this->paciente_id ";
-//    $resultado = $this->ejecutar($sql);
-//    return $resultado;
-//  }
+ public function modificar()
+  {
+    $sql = "UPDATE medicos SET med_nombre1 = '$this->med_nombre1', med_nombre2 = '$this->med_nombre2', med_apellido1 = '$this->med_apellido1', med_apellido2 = '$this->med_apellido2', med_especialidad = '$this->med_especialidad' WHERE medico_id = $this->medico_id ";
+    $resultado = $this->ejecutar($sql);
+    return $resultado;
+  }
 
 //  public function eliminar()
 //  {
