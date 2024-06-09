@@ -8,32 +8,22 @@ require 'conexion.php';
 
 class medicos extends conexion
 {
-  public $medico_id;
-  public $med_nombre1;
-  public $med_nombre2;
-  public $med_apellido1;
-  public $med_apellido2;
-  public $med_especialidad;
-
-  public $medico_situacion;
+  public $cita_id;
+  public $cita_fecha;
+  public $cita_situacion;
 
 
   public function __construct($args = [])
   {
-    $this->medico_id = $args['medico_id'] ?? null;
-    $this->med_nombre1 = $args['med_nombre1'] ?? '';
-    $this->med_nombre2 = $args['med_nombre2'] ?? '';
-    $this->med_apellido1 = $args['med_apellido1'] ?? '';
-    $this->med_apellido2 = $args['med_apellido2'] ?? '';
-    $this->med_especialidad = $args['med_especialidad'] ?? '';
- 
-    $this->medico_situacion = $args['medico_situacion'] ?? '';
+    $this->cita_id = $args['cita_id'] ?? null;
+    $this->cita_fecha = $args['cita_fecha'] ?? '';
+    $this->cita_situacion = $args['cita_situacion'] ?? '';
   }
 
   // METODO PARA INSERTAR
   public function guardar()
   {
-    $sql = "INSERT into medicos (med_nombre1, med_nombre2, med_apellido1, med_apellido2, med_especialidad) values ('$this->med_nombre1', '$this->med_nombre2', '$this->med_apellido1', '$this->med_apellido2', '$this->med_especialidad')";
+    $sql = "INSERT into citas (cita_fecha) values ('$this->cita_fecha')";
     $resultado = $this->ejecutar($sql);
     return $resultado;
   }

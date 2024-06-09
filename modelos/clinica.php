@@ -12,6 +12,7 @@ class clinicas extends conexion
   public $cli_nombre_clinica;
   public $cli_ubicacion;
   public $cli_telefono;
+  public $cli_medico_id;
   public $clinica_situacion;
 
 
@@ -21,13 +22,14 @@ class clinicas extends conexion
     $this->cli_nombre_clinica = $args['cli_nombre_clinica'] ?? '';
     $this->cli_ubicacion = $args['cli_ubicacion'] ?? '';
     $this->cli_telefono = $args['cli_telefono'] ?? '';
+    $this->cli_medico_id = $args['cli_medico_id'] ?? '';
     $this->clinica_situacion = $args['clinica_situacion'] ?? '';
   }
 
   // METODO PARA INSERTAR
   public function guardar()
   {
-    $sql = "INSERT into clinicas (cli_nombre_clinica, cli_ubicacion, cli_telefono) values ('$this->cli_nombre_clinica', '$this->cli_ubicacion', '$this->cli_telefono')";
+    $sql = "INSERT into clinicas (cli_nombre_clinica, cli_ubicacion, cli_telefono, cli_medico_id) values ('$this->cli_nombre_clinica', '$this->cli_ubicacion', '$this->cli_telefono', '$this->cli_medico_id')";
     $resultado = $this->ejecutar($sql);
     return $resultado;
   }
@@ -70,6 +72,8 @@ class clinicas extends conexion
 
    return $resultado;
  }
+
+
 
  public function modificar()
   {

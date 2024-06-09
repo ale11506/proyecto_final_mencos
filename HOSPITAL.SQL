@@ -3,7 +3,9 @@ CREATE TABLE Clinicas (
     cli_nombre_clinica VARCHAR(100) NOT NULL,
     cli_ubicacion VARCHAR(100) NOT NULL,
     cli_telefono VARCHAR(15) NOT NULL,
-    clinica_situacion SMALLINT DEFAULT 1
+    clinica_situacion SMALLINT DEFAULT 1,
+    cli_medico_id INT,
+    FOREIGN KEY (cli_med_id) REFERENCES Medicos(medico_id)
 );
 
 CREATE TABLE Medicos (
@@ -14,8 +16,7 @@ CREATE TABLE Medicos (
     med_apellido2 VARCHAR(50) NOT NULL,
     med_especialidad VARCHAR(50) NOT NULL,
     medico_situacion SMALLINT DEFAULT 1
-    clinica_id INT,
-    FOREIGN KEY (clinica_id) REFERENCES Clinicas(clinica_id)
+   
 );
 
 CREATE TABLE Pacientes (
@@ -32,8 +33,7 @@ CREATE TABLE Pacientes (
 
 CREATE TABLE Citas (
     cita_id SERIAL PRIMARY KEY NOT NULL, 
-    cit_fecha DATE NOT NULL, 
-    cit_hora VARCHAR NOT NULL, 
+    cita_fecha DATETIME YEAR TO MINUTE, 
     cita_situacion SMALLINT DEFAULT 1,
     paciente_id INT, 
     medico_id INT,

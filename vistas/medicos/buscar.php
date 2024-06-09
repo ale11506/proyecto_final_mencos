@@ -35,6 +35,7 @@ include_once '../../vistas/templates/header.php'; ?>
                 <input type="text" name="med_especialidad" id="med_especialidad" class="form-control" >
             </div>
         </div>
+        
         <div class="row">
             <div class="col">
                 <button type="submit" class="btn btn-info w-100 bg-success text-white"> BUSCAR</button>
