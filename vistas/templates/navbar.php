@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg bg-light">
+<nav class="navbar fixed-top navbar-expand-lg bg-secondary">
   <div class="container-fluid">
     <a class="navbar-brand" href="../../vistas/cliente/index.php"><img src="../../src/images/logo.jpg" alt="Logo" width="70" height="70"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
