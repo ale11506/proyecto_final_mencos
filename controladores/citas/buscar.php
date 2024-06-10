@@ -5,6 +5,7 @@
 
 require_once '../../modelos/citas.php';
 
+
 if (isset($_GET['cita_fecha']) && !empty($_GET['cita_fecha'])) {
     $_GET['cita_fecha'] = date("Y-m-d H:i", strtotime($_GET['cita_fecha']));
     $fechaCita = $_GET['cita_fecha'];
@@ -21,10 +22,26 @@ try {
     $error = $e2->getMessage();
 }
 
+if (isset($_GET['nombrepaciente']) && !empty($_GET['nombrepaciente'])) {
+    $_GET['nombrepaciente'] = htmlspecialchars($_GET['nombrepaciente']);
+    $fechaCita = $_GET['nombrepaciente'];
+} else {
+    $fechaCita = '';
+}
+
+try {
+    $cita = new Citas();
+    $citas = $cita->buscarPacientes($nombrepacienteCita);
+} catch (PDOException $e) {
+    $error = $e->getMessage();
+} catch (Exception $e2) {
+    $error = $e2->getMessage();
+}
+
 $citasPorClinica = [];
 if (isset($citas) && count($citas) > 0) {
     foreach ($citas as $cita) {
-        $clinica = $cita['cli_nombre'] ?? 'Sin Clínica';
+        $clinica = $cita['cli_nombre_clinica'] ?? 'Sin Clínica';
         if (!isset($citasPorClinica[$clinica])) {
             $citasPorClinica[$clinica] = [];
         }
@@ -43,31 +60,56 @@ $fechaSolo = !empty($fechaCita) ? date("Y-m-d", strtotime($fechaCita)) : '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
-        .highlight-table {
-            background-color: #f8f9fa;
-            border: 2px solid #007bff;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        .highlight-table th {
-            background-color: #007bff;
-            color: white;
-        }
-        .highlight-table tbody tr:nth-child(odd) {
-            background-color: #e9ecef;
-        }
-        .highlight-table tbody tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        .highlight-header {
-            background-color: #e9ecef;
-            border: 2px solid #007bff;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-    </style>
+    
+    .highlight-table {
+        background-color: #f2f2f2; 
+        border: 2px solid #999999; 
+        border-radius: 10px;
+        padding: 20px;
+        color: #333333; 
+        font-family: 'Alegreya', serif; 
+    }
+
+   
+    .highlight-table th {
+        background-color: #666666; 
+        color: #ffffff; 
+        font-size: 16px; 
+        padding: 10px;
+        font-family: 'Alegreya', serif; 
+    }
+
+    
+    .highlight-table tbody tr:nth-child(odd) {
+        background-color: #e0e0e0; 
+    }
+
+    
+    .highlight-table tbody tr:nth-child(even) {
+        background-color: #f7f7f7; 
+    }
+
+    
+    .highlight-header {
+        background-color: #666666; 
+        border: 2px solid #999999; 
+        border-radius: 10px;
+        padding: 15px; 
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ffffff; 
+        font-size: 18px; 
+        font-family: 'Alegreya', serif; 
+    }
+
+    
+    .highlight-table,
+    .highlight-header {
+        font-family: 'Alegreya', serif; 
+    }
+</style>
+
+
     <title>Buscar citas</title>
 </head>
 
@@ -104,9 +146,9 @@ $fechaSolo = !empty($fechaCita) ? date("Y-m-d", strtotime($fechaCita)) : '';
                                     <?php foreach ($citas as $key => $cita) : ?>
                                         <tr>
                                             <td class="text-center"><?= $key + 1 ?></td>
-                                            <td><?= htmlspecialchars($cita['pac_nombre1'] ?? '') ?></td>
+                                            <td><?= htmlspecialchars($cita['nombrepaciente'] ?? '') ?></td>
                                             <td><?= htmlspecialchars($cita['pac_dpi'] ?? '') ?></td>
-                                            <td><?= htmlspecialchars($cita['med_nombre1'] ?? '') ?></td>
+                                            <td><?= htmlspecialchars($cita['nombre_medico'] ?? '') ?></td>
                                             <td><?= htmlspecialchars($cita['cita_fecha'] ?? '') ?></td>
                                             <td><?= htmlspecialchars($cita['pac_referido'] ?? '') ?></td>
                                         </tr>
@@ -117,7 +159,7 @@ $fechaSolo = !empty($fechaCita) ? date("Y-m-d", strtotime($fechaCita)) : '';
                     <?php endforeach ?>
                 <?php else : ?>
                     <div class="alert alert-warning text-center" role="alert">
-                        NO EXISTEN REGISTROS
+                        SIN REGISTROS
                     </div>
                 <?php endif ?>
             </div>

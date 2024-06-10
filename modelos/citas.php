@@ -1,8 +1,8 @@
 <?php
 
-  // ini_set('display_errors', 1);
-  // ini_set('display_startup_errors', 1);
-  // error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 require_once 'conexion.php';
 
@@ -27,78 +27,78 @@ class citas extends conexion
   // METODO PARA INSERTAR
   public function guardar()
   {
-    $sql = "INSERT into citas (cita_fecha, cita_paciente_id, cita_clinica_id) values ('$this->cita_fecha', '$this->cita_paciente_id', '$this->cita_clinica_id')";
- 
+    $sql = "INSERT into Citas (cita_fecha, cita_paciente_id, cita_clinica_id) values ('$this->cita_fecha', '$this->cita_paciente_id', '$this->cita_clinica_id')";
+
     $resultado = $this->ejecutar($sql);
     return $resultado;
   }
 
   public function buscar(...$columnas)
-  
- {
-   $colums = count($columnas) > 0 ? implode(',', $columnas) : '*';
-   $sql = "SELECT $colums FROM citas where cita_situacion = 1 ";
+
+  {
+    $colums = count($columnas) > 0 ? implode(',', $columnas) : '*';
+    $sql = "SELECT $colums FROM Citas where cita_situacion = 1 ";
 
 
-   if ($this->cita_paciente_id != '') {
-     $sql .= " AND cita_fecha like '%$this->cita_fecha%' ";
-   }
-   if ($this->cita_fecha != '') {
-     $sql .= " AND cita_fecha like '%$this->cita_fecha%' ";
-   }
-   if ($this->cita_clinica_id != '') {
-     $sql .= " AND cita_clinica_id like'%$this->cita_clinica_id%' ";
-   }
+    if ($this->cita_paciente_id != '') {
+      $sql .= " AND cita_fecha like '%$this->cita_fecha%' ";
+    }
+    if ($this->cita_fecha != '') {
+      $sql .= " AND cita_paciente_id like '%$this->cita_fecha%' ";
+    }
+    if ($this->cita_clinica_id != '') {
+      $sql .= " AND cita_clinica_id like'%$this->cita_clinica_id%' ";
+    }
 
-   $resultado = self::servir($sql);
-   return $resultado;
- }
+    $resultado = self::servir($sql);
+    return $resultado;
+  }
 
- public function buscarCitas()
- {
-   $sql = " SELECT * FROM citas where cita_situacion = 1";
-   $resultado = self::servir($sql);
-   return $resultado;
- }
+  public function buscarCitas()
+  {
+    $sql = " SELECT * FROM Citas where cita_situacion = 1";
+    $resultado = self::servir($sql);
+    return $resultado;
+  }
 
- public function buscarId($id)
- {
-   $sql = " SELECT * FROM citas WHERE cita_situacion = 1 AND cita_id = '$id' ";
-   $resultado = array_shift(self::servir($sql));
-   return $resultado;
- }
+  public function buscarId($id)
+  {
+    $sql = " SELECT * FROM Citas WHERE cita_situacion = 1 AND cita_id = '$id' ";
+    $resultado = array_shift(self::servir($sql));
+    return $resultado;
+  }
 
- public function buscarPorFecha($fechaCita)
- {
-   $sql = "SELECT cli_nombre, med_nombres, pac_nombres, pac_dpi, cita_fecha,  pac_referido from Citas
-           inner join clinicas on cita_clinica_id = clinica_id 
-           inner join Pacientes on cita_paciente_id = paciente_id 
-           inner join Medicos on cli_medico_id = medico_id
-           where cit_situacion = 1 ";
+  public function buscarPorFecha($fechaCita)
+  {
+    $sql = "SELECT cli_nombre_clinica, TRIM(med_nombre1) || ' ' || TRIM(med_nombre2) || ' ' ||
+            TRIM(med_apellido1) || ' ' || TRIM(med_apellido2) as nombre_medico, TRIM(pac_nombre1)
+            || ' ' || TRIM(pac_nombre2) || ' ' || TRIM( pac_apellido1) || ' ' || TRIM( pac_apellido2) as nombrepaciente, pac_dpi, cita_fecha, pac_referido 
+            from Citas inner join Clinicas on cita_clinica_id = clinica_id 
+            inner join Pacientes on cita_paciente_id = paciente_id
+            inner join Medicos on cli_medico_id = medico_id where cita_situacion = 1 ";
 
-   if ($fechaCita != '') {
-     $sql .= "  and cita_fecha = '$fechaCita'";
-   }
+    if ($fechaCita != '') {
+      $sql .= "  and cita_fecha = '$fechaCita'";
+    }
 
-   // var_dump($sql);
-   // exit;
+    $resultado = self::servir($sql);
+    return $resultado;
+  }
 
-   $resultado = self::servir($sql);
-   return $resultado;
- }
- 
-  // public function modificar()
-  // {
-  //   $sql = "UPDATE clinicas SET cli_nombre_clinica = '$this->cli_nombre_clinica', cli_ubicacion = '$this->cli_ubicacion', cli_telefono = '$this->cli_telefono' WHERE clinica_id = $this->clinica_id ";
-  //   $resultado = $this->ejecutar($sql);
-  //   return $resultado;
-  // }
+  public function buscarPacientes($nombrepacienteCita)
+  {
+    $sql = "SELECT cli_nombre_clinica, TRIM(med_nombre1) || ' ' || TRIM(med_nombre2) || ' ' ||
+            TRIM(med_apellido1) || ' ' || TRIM(med_apellido2) as nombre_medico, TRIM(pac_nombre1)
+            || ' ' || TRIM(pac_nombre2) || ' ' || TRIM( pac_apellido1) || ' ' || TRIM( pac_apellido2) as nombrepaciente, pac_dpi, cita_fecha, pac_referido 
+            from Citas inner join Clinicas on cita_clinica_id = clinica_id 
+            inner join Pacientes on cita_paciente_id = paciente_id
+            inner join Medicos on cli_medico_id = medico_id where cita_situacion = 1 ";
 
-  // public function eliminar()
-  // {
- 
-  //   $sql = "UPDATE clinicas SET clinica_situacion = 0 WHERE clinica_id = $this->clinica_id ";
-  //   $resultado = $this->ejecutar($sql);
-  //   return $resultado;
-  // }
+    if ($nombrepacienteCita != '') {
+      $sql .= "  and cita_fecha = '$nombrepacienteCita'";
+    }
+
+    $resultado = self::servir($sql);
+    return $resultado;
+  }
 }
