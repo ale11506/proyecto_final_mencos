@@ -4,30 +4,30 @@
 //  ini_set('display_startup_errors', 1);
 //  error_reporting(E_ALL);
 
-require '../../modelos/medico.php';
+require '../../modelos/citas.php';
 
 // VALIDAR INFORMACION
-$_POST['med_nombre1'] = htmlspecialchars($_POST['med_nombre1']);
-$_POST['med_nombre2'] = htmlspecialchars($_POST['med_nombre2']);
-$_POST['med_apellido1'] = htmlspecialchars($_POST['med_apellido1']);
-$_POST['med_apellido2'] = htmlspecialchars($_POST['med_apellido2']);
-$_POST['med_especialidad'] = htmlspecialchars($_POST['med_especialidad']);
+$_POST['cita_paciente_id'] = htmlspecialchars($_POST['cita_paciente_id']);
+$_POST['cita_fecha']= date('Y-m-d H:i', strtotime($_POST['cita_fecha']));
+$_POST['cita_clinica_id'] = htmlspecialchars($_POST['cita_clinica_id']);
 
-
-
-if ($_POST['med_nombre1'] == '' || $_POST['med_nombre2'] == '' || $_POST['med_apellido1'] == '' || $_POST['med_apellido2'] == '' || $_POST['med_especialidad'] == '') {
+ 
+if ($_POST['cita_paciente_id'] == '' || $_POST['cita_fecha'] == '' || $_POST['cita_clinica_id'] == '') {
     // ALERTA PARA VALIDAR DATOS
     $resultado = [
         'mensaje' => 'DEBE VALIDAR LOS DATOS',
         'codigo' => 2
+    
     ];
 } else {
+    // Formatear la fecha
+
     try {
         // REALIZAR CONSULTA
-        $medico = new Medicos($_POST);
-        $guardar = $medico->guardar();
+        $citas = new citas($_POST);
+        $guardar = $citas->guardar();
         $resultado = [
-            'mensaje' => 'MEDICO INSERTADO CORRECTAMENTE',
+            'mensaje' => 'CITA INSERTADO CORRECTAMENTE',
             'codigo' => 1
         ];
     } catch (PDOException $pe) {
@@ -59,7 +59,7 @@ include_once '../../vistas/templates/header.php'; ?>
 </div>
 <div class="row justify-content-center">
     <div class="col-lg-6">
-        <a href="../../vistas/medicos/index.php" class="btn btn-primary w-100">Volver al formulario</a>
+        <a href="../../vistas/citas/index.php" class="btn btn-primary w-100">Volver al formulario</a>
     </div>
 </div>
 

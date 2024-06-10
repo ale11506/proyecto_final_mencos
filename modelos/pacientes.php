@@ -4,7 +4,7 @@
 //  ini_set('display_startup_errors', 1);
 //  error_reporting(E_ALL);
 
-require 'conexion.php';
+require_once 'conexion.php';
 
 class Pacientes extends conexion
 {
@@ -85,6 +85,17 @@ class Pacientes extends conexion
     return $resultado;
   }
 
+  public function buscarPacientes()
+ {
+   $sql = " SELECT  TRIM(pac_nombre1) || ' ' || TRIM(pac_nombre2) || ' ' || TRIM(pac_apellido1) || ' ' || TRIM(pac_apellido2) AS nombres, paciente_id FROM pacientes where paciente_situacion = 1";
+  
+   $resultado = self::servir($sql);
+ 
+   
+   return $resultado;
+ }
+
+
   public function modificar()
   {
     $sql = "UPDATE pacientes SET pac_nombre1 = '$this->pac_nombre1', pac_nombre2 = '$this->pac_nombre2', pac_apellido1 = '$this->pac_apellido1', pac_apellido2 = '$this->pac_apellido2', pac_dpi = '$this->pac_dpi', pac_sexo = '$this->pac_sexo', pac_referido = '$this->pac_referido' WHERE paciente_id = $this->paciente_id ";
@@ -102,4 +113,5 @@ class Pacientes extends conexion
     $resultado = $this->ejecutar($sql);
     return $resultado;
   }
+
 }

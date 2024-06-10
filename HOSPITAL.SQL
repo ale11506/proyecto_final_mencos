@@ -25,7 +25,7 @@ CREATE TABLE Pacientes (
     pac_nombre2 VARCHAR(50) NOT NULL,
     pac_apellido1 VARCHAR(50) NOT NULL,
     pac_apellido2 VARCHAR(50) NOT NULL,
-    pac_dpi VARCHAR (50) NOT NULL,
+pac_dpi VARCHAR (50) NOT NULL,
     pac_sexo VARCHAR(10) NOT NULL,
     pac_referido VARCHAR (10) NOT NULL,
     paciente_situacion SMALLINT DEFAULT 1
@@ -35,10 +35,8 @@ CREATE TABLE Citas (
     cita_id SERIAL PRIMARY KEY NOT NULL, 
     cita_fecha DATETIME YEAR TO MINUTE, 
     cita_situacion SMALLINT DEFAULT 1,
-    paciente_id INT, 
-    medico_id INT,
-    clinica_id INT, 
-    FOREIGN KEY (paciente_id) REFERENCES Pacientes(paciente_id), 
-    FOREIGN KEY (medico_id) REFERENCES Medicos(medico_id), 
-    FOREIGN KEY (clinica_id) REFERENCES Clinicas(clinica_id) 
+    cita_paciente_id INT, 
+    cita_clinica_id INT, 
+    FOREIGN KEY (cita_paciente_id) REFERENCES Pacientes(paciente_id), 
+    FOREIGN KEY (cita_clinica_id) REFERENCES Clinicas(clinica_id) 
 );

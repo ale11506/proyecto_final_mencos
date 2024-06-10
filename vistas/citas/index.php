@@ -1,41 +1,73 @@
 <?php
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
 
-include_once '../../vistas/templates/header.php';
+include '../../vistas/templates/header.php';
+require_once '../../modelos/pacientes.php';
+require_once '../../modelos/clinica.php';
+
+
+$buscarPaciente = new Pacientes();
+$pacientes = $buscarPaciente->buscarPacientes();
+
+$buscarClinica = new clinicas();
+$clinicas = $buscarClinica->buscarClinicas();
+
 
 ?>
 
 <h1 class="text-center">FORMULARIO DE CITAS</h1>
 <div class="row justify-content-center">
     <form action="../../controladores/citas/guardar.php" method="POST" class="border bg-light shadow rounded p-4 col-lg-6">
+
         <div class="row mb-3">
             <div class="col">
-                <label for="med_nombre1">PACIENTE</label>
-                <input type="text" name="med_nombre1" id="med_nombre1" class="form-control" required>
+                <label for="cita_paciente_id">PACIENTE</label>
+                <select id="cita_paciente_id" name="cita_paciente_id" class="form-control">
+                    <option value="">SELECCIONE</option>
+                    <?php foreach ($pacientes as $paciente) : ?>
+                        <option value="<?= $paciente['paciente_id'] ?>">
+                            <?= $paciente['nombres'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
+
         <div class="row mb-3">
             <div class="col">
-                <label for="med_nombre2">CLINICA</label>
-                <input type="text" name="med_nombre2" id="med_nombre2" class="form-control" required>
+                <label for="cita_fecha">FECHA DE LA CITA</label>
+                <input type="datetime-local" name="cita_fecha" id="cita_fecha" class="form-control" required>
             </div>
         </div>
+
         <div class="row mb-3">
             <div class="col">
-                <label for="med_apellido1">FECHA</label>
-                <input type="text" name="med_apellido1" id="med_apellido1" class="form-control" required>
+                <label for="cita_clinica_id">CLINICA</label>
+                <select id="cita_clinica_id" name="cita_clinica_id" class="form-control">
+                    <option value="">SELECCIONE</option>
+                    <?php foreach ($clinicas as $clinica) : ?>
+                        <option value="<?= $clinica['clinica_id'] ?>">
+                            <?= $clinica['cli_nombre_clinica'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
+
         <div class="row mb-3">
             <div class="col">
                 <button type="submit" class="btn btn-success w-100">GUARDAR</button>
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <a href="../../controladores/citas/buscar.php" class="btn btn-primary w-100">BUSCAR</a>
-            </div>
+            <!-- <div class="col">
+                <a href="../../controladores/s/buscar.php" class="btn btn-primary w-100">BUSCAR</a>
+            </div> -->
         </div>
     </form>
 </div>
+
 
 <?php include_once '../../vistas/templates/footer.php'; ?>

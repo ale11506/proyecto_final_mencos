@@ -4,7 +4,7 @@
   // ini_set('display_startup_errors', 1);
   // error_reporting(E_ALL);
 
-require 'conexion.php';
+require_once 'conexion.php';
 
 class clinicas extends conexion
 {
@@ -65,6 +65,14 @@ class clinicas extends conexion
    return $resultado;
  }
 
+ public function buscarClinicas()
+ {
+   $sql = " SELECT * FROM clinicas where clinica_situacion = 1";
+   $resultado = self::servir($sql);
+   return $resultado;
+ }
+
+
  public function buscarId($id)
  {
    $sql = " SELECT * FROM clinicas WHERE clinica_situacion = 1 AND clinica_id = '$id' ";
@@ -84,10 +92,7 @@ class clinicas extends conexion
 
   public function eliminar()
   {
-    //   $sql = "DELETE FROM clinicas WHERE clinica_id = $this->clinica_id ";
-
-    //  echo $sql;
-
+ 
     $sql = "UPDATE clinicas SET clinica_situacion = 0 WHERE clinica_id = $this->clinica_id ";
     $resultado = $this->ejecutar($sql);
     return $resultado;

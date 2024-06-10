@@ -38,7 +38,7 @@ include_once '../../vistas/templates/header.php';
             </div>
         </div>
 
-        
+
 
 
         <div class="row mb-3">
