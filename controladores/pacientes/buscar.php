@@ -13,6 +13,8 @@
         $_GET['pac_apellido1'] = htmlspecialchars( $_GET['pac_apellido1']);
         $_GET['pac_apellido2'] = htmlspecialchars( $_GET['pac_apellido2']);
         $_GET['pac_dpi'] = htmlspecialchars( $_GET['pac_dpi']);
+        $_GET['pac_sexo'] = htmlspecialchars( $_GET['pac_sexo']);
+        $_GET['pac_referido'] = htmlspecialchars( $_GET['pac_referido']);
 
         $objpaciente = new Pacientes($_GET);
         $pacientes = $objpaciente->buscar();
@@ -59,6 +61,8 @@
                         <th>Primer Apellido</th>
                         <th>Segundo Apellido</th>
                         <th>DPI</th>
+                        <th>SEXO</th>
+                        <th>REFERIDO</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,6 +75,8 @@
                                 <td><?= $paciente['pac_apellido1'] ?></td>
                                 <td><?= $paciente['pac_apellido2'] ?></td>
                                 <td><?= $paciente['pac_dpi'] ?></td>
+                                <td><?= $paciente['pac_sexo'] ?></td>
+                                <td><?= $paciente['pac_referido'] ?></td>
                                 <td class="text-center">
                                 <div class="dropdown">
                                     <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
