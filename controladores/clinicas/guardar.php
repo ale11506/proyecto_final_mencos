@@ -7,7 +7,7 @@
 require '../../modelos/clinica.php';
 
 // VALIDAR INFORMACION
-$_POST['cli_nombre_nombre'] = htmlspecialchars($_POST['cli_nombre_nombre']);
+$_POST['cli_nombre_clinica'] = htmlspecialchars($_POST['cli_nombre_clinica']);
 $_POST['cli_ubicacion'] = htmlspecialchars($_POST['cli_ubicacion']);
 $_POST['cli_telefono'] = htmlspecialchars($_POST['cli_telefono']);
 
@@ -25,7 +25,7 @@ if ($_POST['cli_nombre_clinica'] == '' || $_POST['cli_ubicacion'] == '' || $_POS
         $clinica = new Clinicas($_POST);
         $guardar = $clinica->guardar();
         $resultado = [
-            'mensaje' => 'CLINICA INSERTADO CORRECTAMENTE',
+            'mensaje' => 'CITA INSERTADA CORRECTAMENTE',
             'codigo' => 1
         ];
     } catch (PDOException $pe) {

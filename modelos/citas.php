@@ -67,20 +67,19 @@ class citas extends conexion
    $resultado = array_shift(self::servir($sql));
    return $resultado;
  }
-
  
-//  public function modificar()
-//   {
-//     $sql = "UPDATE clinicas SET cli_nombre_clinica = '$this->cli_nombre_clinica', cli_ubicacion = '$this->cli_ubicacion', cli_telefono = '$this->cli_telefono' WHERE clinica_id = $this->clinica_id ";
-//     $resultado = $this->ejecutar($sql);
-//     return $resultado;
-//   }
+  // public function modificar()
+  // {
+  //   $sql = "UPDATE clinicas SET cli_nombre_clinica = '$this->cli_nombre_clinica', cli_ubicacion = '$this->cli_ubicacion', cli_telefono = '$this->cli_telefono' WHERE clinica_id = $this->clinica_id ";
+  //   $resultado = $this->ejecutar($sql);
+  //   return $resultado;
+  // }
 
-//   public function eliminar()
-//   {
+  // public function eliminar()
+  // {
  
-//     $sql = "UPDATE clinicas SET clinica_situacion = 0 WHERE clinica_id = $this->clinica_id ";
-//     $resultado = $this->ejecutar($sql);
-//     return $resultado;
-//   }
+  //   $sql = "UPDATE clinicas SET clinica_situacion = 0 WHERE clinica_id = $this->clinica_id ";
+  //   $resultado = $this->ejecutar($sql);
+  //   return $resultado;
+  // }
 }
