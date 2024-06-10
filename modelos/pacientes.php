@@ -29,7 +29,7 @@ class Pacientes extends conexion
     $this->pac_dpi = $args['pac_dpi'] ?? '';
     $this->pac_sexo = $args['pac_sexo'] ?? '';
     $this->pac_referido = $args['pac_referido'] ?? '';
-    $this->paciente_situacion = $args['cli_situacion'] ?? '';
+    $this->paciente_situacion = $args['pac_situacion'] ?? '';
   }
 
   // METODO PARA INSERTAR

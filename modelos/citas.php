@@ -21,13 +21,13 @@ class citas extends conexion
     $this->cita_fecha = $args['cita_fecha'] ?? '';
     $this->cita_situacion = $args['cita_situacion'] ?? '';
     $this->cita_paciente_id = $args['cita_paciente_id'] ?? '';
-    $this->cita_clinica_id = $args['cita_clinica_id'] ?? '';
+    $this->cita_clinica_id = $args['cita_cita_id'] ?? '';
   }
 
   // METODO PARA INSERTAR
   public function guardar()
   {
-    $sql = "INSERT into citas (cita_fecha, cita_paciente_id, cita_clinica_id) values ('$this->cita_fecha', '$this->cita_paciente_id', '$this->cita_clinica_id')";
+    $sql = "INSERT into citas (cita_fecha, cita_paciente_id, cita_cita_id) values ('$this->cita_fecha', '$this->cita_paciente_id', '$this->cita_cita_id')";
  
     $resultado = $this->ejecutar($sql);
     return $resultado;
@@ -37,34 +37,50 @@ class citas extends conexion
   
  {
    $colums = count($columnas) > 0 ? implode(',', $columnas) : '*';
-   $sql = "SELECT $colums FROM clinicas where clinica_situacion = 1 ";
+   $sql = "SELECT $colums FROM citas where cita_situacion = 1 ";
 
 
-   if ($this->cli_nombre_clinica != '') {
-     $sql .= " AND cli_nombre_clinica like '%$this->cli_nombre_clinica%' ";
+   if ($this->cita_paciente_id != '') {
+     $sql .= " AND cita_fecha like '%$this->cita_fecha%' ";
    }
-   if ($this->cli_ubicacion != '') {
-     $sql .= " AND cli_ubicacion like '%$this->cli_ubicacion%' ";
+   if ($this->cita_fecha != '') {
+     $sql .= " AND cita_fecha like '%$this->cita_fecha%' ";
    }
-   if ($this->cli_telefono != '') {
-     $sql .= " AND cli_telefono like'%$this->cli_telefono%' ";
+   if ($this->cita_clinica_id != '') {
+     $sql .= " AND cita_clinica_id like'%$this->cita_clinica_id%' ";
    }
 
    $resultado = self::servir($sql);
    return $resultado;
  }
 
- public function buscarClinicas()
+ public function buscarCitas()
  {
-   $sql = " SELECT * FROM clinicas where clinica_situacion = 1";
+   $sql = " SELECT * FROM citas where cita_situacion = 1";
    $resultado = self::servir($sql);
    return $resultado;
  }
 
  public function buscarId($id)
  {
-   $sql = " SELECT * FROM clinicas WHERE clinica_situacion = 1 AND clinica_id = '$id' ";
+   $sql = " SELECT * FROM citas WHERE cita_situacion = 1 AND cita_id = '$id' ";
    $resultado = array_shift(self::servir($sql));
    return $resultado;
  }
+
+ 
+ public function modificar()
+  {
+    $sql = "UPDATE clinicas SET cli_nombre_clinica = '$this->cli_nombre_clinica', cli_ubicacion = '$this->cli_ubicacion', cli_telefono = '$this->cli_telefono' WHERE clinica_id = $this->clinica_id ";
+    $resultado = $this->ejecutar($sql);
+    return $resultado;
+  }
+
+  public function eliminar()
+  {
+ 
+    $sql = "UPDATE clinicas SET clinica_situacion = 0 WHERE clinica_id = $this->clinica_id ";
+    $resultado = $this->ejecutar($sql);
+    return $resultado;
+  }
 }

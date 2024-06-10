@@ -7,20 +7,20 @@ include_once '../../vistas/templates/header.php'; ?>
     <form action="../../controladores/citas/buscar.php" method="GET" class="border bg-light shadow rounded p-4 col-lg-6">
         <div class="row mb-3">
             <div class="col">
-                <label for="cli_nombre_clinica">NOMBRE DEL PACIENTE</label>
-                <input type="text" name="cli_nombre_clinica" id="cli_nombre_clinica" class="form-control" >
+                <label for="cita_paciente_id">NOMBRE DEL PACIENTE</label>
+                <input type="text" name="cita_paciente_id" id="cita_paciente_id" class="form-control" >
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="cli_ubicacion">FECHA DE LA CITA</label>
-                <input type="text" name="cli_ubicacion" id="cli_ubicacion" class="form-control" >
+                <label for="cita_fecha">FECHA DE LA CITA</label>
+                <input type="text" name="cita_fecha" id="cita_fecha" class="form-control" >
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
-                <label for="cli_telefono">CLINICA</label>
-                <input type="text" name="cli_telefono" id="cli_telefono" class="form-control" >
+                <label for="cita_clinica_id">CLINICA</label>
+                <input type="text" name="cita_clinica_id" id="cita_clinica_id" class="form-control" >
             </div>
         </div>
         <div class="row">
