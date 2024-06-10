@@ -5,6 +5,22 @@
 
 require_once '../../modelos/citas.php';
 
+if (isset($_GET['nombrepaciente']) && !empty($_GET['nombrepaciente'])) {
+    $_GET['nombrepaciente'] = htmlspecialchars($_GET['nombrepaciente']);
+    $fechaCita = $_GET['nombrepaciente'];
+} else {
+    $fechaCita = '';
+}
+
+try {
+    $cita = new Citas();
+    $citas = $cita->buscarPacientes($nombrepacienteCita);
+} catch (PDOException $e) {
+    $error = $e->getMessage();
+} catch (Exception $e2) {
+    $error = $e2->getMessage();
+}
+
 
 if (isset($_GET['cita_fecha']) && !empty($_GET['cita_fecha'])) {
     $_GET['cita_fecha'] = date("Y-m-d H:i", strtotime($_GET['cita_fecha']));
@@ -22,21 +38,6 @@ try {
     $error = $e2->getMessage();
 }
 
-if (isset($_GET['nombrepaciente']) && !empty($_GET['nombrepaciente'])) {
-    $_GET['nombrepaciente'] = htmlspecialchars($_GET['nombrepaciente']);
-    $fechaCita = $_GET['nombrepaciente'];
-} else {
-    $fechaCita = '';
-}
-
-try {
-    $cita = new Citas();
-    $citas = $cita->buscarPacientes($nombrepacienteCita);
-} catch (PDOException $e) {
-    $error = $e->getMessage();
-} catch (Exception $e2) {
-    $error = $e2->getMessage();
-}
 
 $citasPorClinica = [];
 if (isset($citas) && count($citas) > 0) {

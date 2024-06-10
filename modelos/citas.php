@@ -95,7 +95,7 @@ class citas extends conexion
             inner join Medicos on cli_medico_id = medico_id where cita_situacion = 1 ";
 
     if ($nombrepacienteCita != '') {
-      $sql .= "  and cita_fecha = '$nombrepacienteCita'";
+      $sql .= "  and nombrepacienteCita = '$nombrepacienteCita'";
     }
 
     $resultado = self::servir($sql);
