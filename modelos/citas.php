@@ -21,13 +21,13 @@ class citas extends conexion
     $this->cita_fecha = $args['cita_fecha'] ?? '';
     $this->cita_situacion = $args['cita_situacion'] ?? '';
     $this->cita_paciente_id = $args['cita_paciente_id'] ?? '';
-    $this->cita_clinica_id = $args['cita_cita_id'] ?? '';
+    $this->cita_clinica_id = $args['cita_clinica_id'] ?? '';
   }
 
   // METODO PARA INSERTAR
   public function guardar()
   {
-    $sql = "INSERT into citas (cita_fecha, cita_paciente_id, cita_cita_id) values ('$this->cita_fecha', '$this->cita_paciente_id', '$this->cita_cita_id')";
+    $sql = "INSERT into citas (cita_fecha, cita_paciente_id, cita_clinica_id) values ('$this->cita_fecha', '$this->cita_paciente_id', '$this->cita_clinica_id')";
  
     $resultado = $this->ejecutar($sql);
     return $resultado;
@@ -69,18 +69,18 @@ class citas extends conexion
  }
 
  
- public function modificar()
-  {
-    $sql = "UPDATE clinicas SET cli_nombre_clinica = '$this->cli_nombre_clinica', cli_ubicacion = '$this->cli_ubicacion', cli_telefono = '$this->cli_telefono' WHERE clinica_id = $this->clinica_id ";
-    $resultado = $this->ejecutar($sql);
-    return $resultado;
-  }
+//  public function modificar()
+//   {
+//     $sql = "UPDATE clinicas SET cli_nombre_clinica = '$this->cli_nombre_clinica', cli_ubicacion = '$this->cli_ubicacion', cli_telefono = '$this->cli_telefono' WHERE clinica_id = $this->clinica_id ";
+//     $resultado = $this->ejecutar($sql);
+//     return $resultado;
+//   }
 
-  public function eliminar()
-  {
+//   public function eliminar()
+//   {
  
-    $sql = "UPDATE clinicas SET clinica_situacion = 0 WHERE clinica_id = $this->clinica_id ";
-    $resultado = $this->ejecutar($sql);
-    return $resultado;
-  }
+//     $sql = "UPDATE clinicas SET clinica_situacion = 0 WHERE clinica_id = $this->clinica_id ";
+//     $resultado = $this->ejecutar($sql);
+//     return $resultado;
+//   }
 }
