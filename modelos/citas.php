@@ -67,6 +67,25 @@ class citas extends conexion
    $resultado = array_shift(self::servir($sql));
    return $resultado;
  }
+
+ public function buscarPorFecha($fechaCita)
+ {
+   $sql = "SELECT cli_nombre, med_nombres, pac_nombres, pac_dpi, cita_fecha,  pac_referido from Citas
+           inner join clinicas on cita_clinica_id = clinica_id 
+           inner join Pacientes on cita_paciente_id = paciente_id 
+           inner join Medicos on cli_medico_id = medico_id
+           where cit_situacion = 1 ";
+
+   if ($fechaCita != '') {
+     $sql .= "  and cita_fecha = '$fechaCita'";
+   }
+
+   // var_dump($sql);
+   // exit;
+
+   $resultado = self::servir($sql);
+   return $resultado;
+ }
  
   // public function modificar()
   // {
